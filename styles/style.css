@@ -1,0 +1,292 @@
+@import "reset.css";
+body{
+background: url("../img/backgroundenter.png") no-repeat;
+    background-size: cover;
+}
+header {
+    width: 100%;
+    height: 58px;
+    background: rgba(0, 0, 0, 0.4);
+}
+h1{
+    font-family: Ubuntu, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 22px;
+    color: #FFFFFF;
+    margin-left: 80px;
+}
+h1:hover {
+    color: #01813F;
+    transition: 0.5s;
+}
+svg {
+    width: 23px;
+    height: 23px;
+    fill: #FFFFFF;
+    padding-right: 26px;
+}
+.border_after::after {
+    content: "";
+    border-left: 1px solid #FFFFFF;
+    opacity: 0.5;
+    padding-top: 13px;
+}
+svg:hover {
+    fill: #01813F;
+    transition: 0.5s;
+}
+.header_box {
+    display: flex;
+}
+.header_login{
+    font-family: Ubuntu, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 14px;
+    color: #FFFFFF;
+    padding-top: 5px;
+    padding-right: 80px;
+    padding-left: 27px;
+}
+.login_hover:hover {
+    color: #01813F;
+    transition: 0.5s;
+}
+.header_elements {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 18px;
+}
+.container {
+    width: 444px;
+    height: 600px;
+    background: #FFFFFF;
+    margin: 54px auto;
+    position: relative;
+}
+.sign_top{
+    padding-top: 31px;
+    font-family: Ubuntu, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 20px;
+    padding-left: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+.sign_top::before {
+    content: '';
+    width: 18px;
+    height: 18px;
+    left: 0;
+    top: 31px;
+    position: absolute;
+    background: #3CB878;
+}
+.login_main{
+    font-family: Ubuntu, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 14px;
+    color: #3CB878;
+    padding-right: 60px;
+}
+.login_main:hover {
+    color: #01813F;
+    text-decoration: underline;
+    transition: 0.5s;
+}
+.buttons {
+    display: flex;
+    font-family: Ubuntu, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 16px;
+}
+.blue_button {
+    margin-top: 15px;
+    margin-left: 60px;
+    width: 160px;
+    height: 48px;
+    border-radius: 4px;
+    display: flex;
+    background: #305DB8;
+    color: #FFFFFF;
+    align-items: center;
+}
+#facebook{
+    fill: #FFFFFF;
+    height: 24px;
+    padding-left: 15px;
+    padding-right: 18px;
+}
+.facebook_border::before {
+    content: '';
+    border-right: 1px solid  #0A162F;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    opacity: 0.1;
+    margin-right: 16px;
+}
+.blue_button:hover {
+    background: #022263;
+    transition: 0.5s;
+}
+.red_button {
+    margin-top: 15px;
+    margin-left: 4px;
+    width: 160px;
+    height: 48px;
+    border-radius: 4px;
+    display: flex;
+    background:  #DF4A32;
+    color: #FFFFFF;
+    align-items: center;
+}
+.google {
+    padding-left: 15px;
+    padding-right: 18px;
+}
+.google_border::before{
+    content: '';
+    border-right: 1px solid  #2B0D09;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    opacity: 0.1;
+    margin-right: 16px;
+}
+.red_button:hover {
+    transition: 0.5s;
+    background: #AB1F09;
+}
+.or_wrap{
+    margin-top: 30px;
+    text-align: center;
+    overflow: hidden;
+}
+.border_side {
+    font-family: Ubuntu, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 14px;
+    color: #848484;
+    position: relative;
+}
+.border_side:before {
+    display: block;
+    width:152px;
+    content: '';
+    position: absolute;
+    border-bottom: 1px solid #F2F2F2;
+    top:50%;
+    left: 61px;
+}
+.border_side:after{
+    display: block;
+    width:152px;
+    content: '';
+    position: absolute;
+    border-bottom: 1px solid #F2F2F2;
+    top:50%;
+    right: 61px;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    font-family: Ubuntu, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 14px;
+}
+.form_size:first-child {
+    margin-top: 11px;
+}
+.form_size {
+    width: 324px;
+    height: 44px;
+    margin-bottom: 5px;
+    border: 1px solid #F2F2F2;
+    border-radius: 4px;
+    margin-left: 60px;
+    outline: none;
+    color: #BEBEBE;
+    padding-left: 20px;
+    opacity: 0.8;
+}
+.form_size:focus {
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.21);
+    opacity: 1;
+    font-family: Ubuntu,sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 14px;
+    color: #434343;
+}
+.checkbox_container {
+    margin-top: 12px;
+    margin-left: 62px;
+    position: relative;
+}
+.checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    position: absolute;
+}
+.label_check{
+    padding-left: 30px;
+}
+.label_check::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #F2F2F2;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    z-index: 1;
+}
+.label_check::after {
+    content: '';
+    width: 15px;
+    height: 15px;
+    background: url("../img/checked.png") no-repeat;
+    background-size: 16px 16px;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    opacity: 0;
+    z-index: 2;
+}
+.checkbox:checked + .label_check::after {
+    opacity: 1;
+}
+
+.button_green {
+    margin-top: 18px;
+    margin-left: 60px;
+    background: rgba(60, 184, 120, 0.8);
+    border-radius: 4px;
+    width: 324px;
+    height: 46px;
+   color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.button_green:hover {
+    background-color:  #01813F;
+    transition: 0.5s;
+}
+
+
