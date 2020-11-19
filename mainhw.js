@@ -1,4 +1,3 @@
-'use strict'
 
 function createNewUser () {
       newUser.firstName = prompt('Name');
