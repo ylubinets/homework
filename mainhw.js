@@ -1,7 +1,21 @@
 'use strict'
 
-    const arr = ['hello', 'world', 23, '23', null];
+    function renderList (items, parent) {
 
-    const filterBy = (arr, type) => arr.filter(arr => typeof arr !== type);
+    const elements = items.map( item => {
+        const liElem = document.createElement('li');
+        liElem.textContent = item;
 
-    console.log(filterBy( arr, 'boolean'))
+        return liElem;
+    })
+    const ulElem = document.createElement('ul');
+    ulElem.append(...elements);
+
+    if(parent){
+        parent.append(ulElem);
+    } else {
+        document.body.append(ulElem);
+    }
+}
+
+renderList(["hello", "world", "Kiev", "Kharkiv", "Odessa", "Lviv"]);
