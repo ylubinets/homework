@@ -1,37 +1,37 @@
 'use strict'
     const form = document.getElementById('price_holder');
+    const spanError = document.getElementById('span-error');
+    const button = document.querySelector('button');
+    const spanPrice = document.getElementById('span-price');
 
-    form.onfocus = function () {
-        this.style.outlineColor = 'green';
+    form.addEventListener('focus', () => {
+        form.style.outlineColor = 'green';
+    })
+
+    function priceSpan () {
+        form.classList.add('green-border');
+
+        button.style.display = 'inline';
+
+        spanPrice.style.display = 'inline';
+        spanPrice.innerText = `Текущая цена: ${form.value}`;
+        document.body.prepend(spanPrice);
     }
+     form.addEventListener('blur', priceSpan );
 
-    form.onblur = function () {
-        if (form.value < 0 ) {
-            this.style.borderColor = 'red';
-
-            let spanError = document.createElement('span');
-            spanError.innerText = `Please enter correct price`;
-            document.body.append(spanError);
-        } else {
-            this.style.color = 'green';
-
-            const button = document.createElement('button');
-            button.classList.add('button');
-            const text = document.createTextNode('X');
-            button.appendChild(text);
-            document.body.prepend(button);
-
-            let spanPrice = document.createElement('span');
-            spanPrice.classList.add('span_price');
-            spanPrice.innerText = `Текущая цена: ${form.value}`;
-            document.body.prepend(spanPrice);
-
-            button.onclick = function () {
-                button.style.display = 'none';
-                spanPrice.style.display = 'none';
-                form.value = '';
-            }
+    function errorSpan () {
+        if ( form.value < 0) {
+            spanError.style.display = 'inline';
+            spanPrice.style.display = 'none';
         }
     }
+    form.addEventListener('blur', errorSpan);
 
+    function buttonClick () {
+        button.style.display = 'none';
+        spanPrice.style.display = 'none';
+        spanError.style.display = 'none';
+        form.value = '';
+    }
 
+    button.addEventListener('click', buttonClick);
