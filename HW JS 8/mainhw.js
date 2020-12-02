@@ -6,6 +6,7 @@
 
     form.addEventListener('focus', () => {
         form.style.outlineColor = 'green';
+        form.style.color = 'black';
     })
 
     function priceSpan () {
@@ -14,7 +15,9 @@
         button.style.display = 'inline';
 
         spanPrice.style.display = 'inline';
+        form.style.color = 'green';
         spanPrice.innerText = `Текущая цена: ${form.value}`;
+        spanError.style.display = 'none';
         document.body.prepend(spanPrice);
     }
      form.addEventListener('blur', priceSpan );
@@ -22,7 +25,9 @@
     function errorSpan () {
         if ( form.value < 0) {
             spanError.style.display = 'inline';
+            form.style.color = 'red';
             spanPrice.style.display = 'none';
+            spanError.style.color = 'red';
         }
     }
     form.addEventListener('blur', errorSpan);
