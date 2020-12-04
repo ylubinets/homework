@@ -1,0 +1,137 @@
+@import "reset.css";
+body{
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+}
+.container {
+    width: 1280px;
+    margin: 0 auto;
+}
+.salmon{
+    background: salmon;
+}
+.container.top {
+    padding-top: 38px;
+}
+.logo {
+    font-size: 80px;
+    line-height: 94px;
+    color: #000000;
+}
+.button {
+    margin-left: 20px;
+    background-color: indigo;
+    padding: 10px 15px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+span {
+    color: cornflowerblue;
+}
+.navigation {
+    width: 100%;
+    background: #35444F;
+    font-size: 24px;
+    line-height: 28px;
+    color: #FFFFFF;
+    margin-top: 38px;
+    display: flex;
+    justify-content: center;
+}
+.nav__link {
+    padding: 26px 36px 19px;
+}
+.nav__link:first-child {
+    border-left: 1px solid #FFFFFF;
+    border-right: 1px solid #FFFFFF;
+}
+.nav__link:nth-child(3){
+    border-left: 1px solid #FFFFFF;
+    border-right: 1px solid #FFFFFF;
+}
+.nav__link:hover {
+    background: #222F3A;
+    transition: 0.5s;
+}
+.side__nav {
+    border: 1px solid black;
+    margin-top: 50px;
+    width: 344px;
+    height: 399px;
+    font-size: 27px;
+    line-height: 27px;
+    color: #495863;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.side__link {
+    width: 100%;
+    padding-left: 42px;
+    padding-top: 26px;
+    padding-bottom: 26px;
+}
+.side__link:first-child {
+    padding-top: 26px;
+    padding-bottom: 26px;
+}
+.side__link:last-child {
+    padding-top: 26px;
+    padding-bottom: 30px;
+}
+.side__link:hover {
+    background: #DBDBDB;
+    transition: 0.5s;
+}
+main {
+    display: flex;
+    justify-content: space-between;
+}
+.picture {
+    width: 885px;
+    height: 529px;
+    border: 1px solid #000000;
+    margin-top: 50px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+img:hover {
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(2.1);
+    -o-transform: scale(5.1);
+    transition: 0.8s;
+}
+.text {
+    font-size: 18px;
+    line-height: 24px;
+    color: #2C2C2C;
+    width: 885px;
+}
+.text__first {
+    margin-top: 37px;
+}
+.text__second {
+    margin-top: 34px;
+}
+.footer__nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 28px;
+    line-height: 28px;
+    padding-left: 40px;
+    width: 100%;
+    height: 69px;
+    background: rgba(99, 105, 110, 0.48);
+    margin-top: 54px;
+}
+.footer__link:hover {
+    text-decoration: underline;
+    color: #32a1ce;
+    transition: 0.5s;
+}
+.footer__copy {
+    padding-left: 72px;
+}
