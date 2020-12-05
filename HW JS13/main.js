@@ -1,14 +1,18 @@
 'use strict'
 
+document.addEventListener('DOMContentLoaded', content);
+
+
 const btn = document.querySelector('.button');
 const body = document.getElementsByTagName('body');
 
-    if (localStorage.getItem('bgcolor') === 'salmon') {
-        body[0].classList.toggle('salmon');
-    } else {
-        body[0].classList.remove('salmon')
+     function content () {
+        if (localStorage.getItem('bgcolor') === 'salmon') {
+            body[0].classList.toggle('salmon');
+        } else {
+            body[0].classList.remove('salmon')
+        }
     }
-
 
     btn.addEventListener('click', () => {
         body[0].classList.toggle('salmon');
