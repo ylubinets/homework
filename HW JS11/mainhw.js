@@ -1,21 +1,16 @@
 "use strict";
 
-const wrapper = document.querySelectorAll('.btn-wrapper .btn');
+let button = document.querySelectorAll(".btn");
 
-document.addEventListener('keydown', function (event) {
-    wrapper.forEach(function (item) {
-            if (event.key === item.innerHTML.toLowerCase()) {
-                return item.style.backgroundColor = 'darkblue';
-            } else {
-                item.removeAttribute('style');
-            }
-            if (event.key === wrapper[0].innerHTML) {
-                wrapper[0].style.backgroundColor = 'darkblue';
-            } else {
-                item.removeAttribute('style');
-            }
+document.addEventListener("keydown", function (e) {
+    button.forEach((item) => {
+        if (e.key.toUpperCase() === item.dataset.name.toUpperCase()) {
+            item.classList.add("color");
+        } else {
+            item.classList.remove("color");
         }
-    );
-})
+    });
+});
+
 
 
