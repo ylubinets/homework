@@ -1,37 +1,37 @@
-let sliderImg = document.querySelectorAll(".images-wrapper img");
-let currentSlide = 0;
-let breakPoint = 0; 
-let timer = function slider() {
-    
-    if (breakPoint === 0) {
-    
-    for (let i = 0; i < sliderImg.length; i++) {
-        sliderImg[i].classList.add('hide');
+
+   let slideIndex = 1;
+   showSlides(slideIndex);
+
+   function nextSlide() {
+    showSlides(slideIndex += 1);
+   }
+
+   function showSlides(n) {
+    const slides = document.querySelectorAll(".image-to-show");
+    if (n > slides.length) {
+     slideIndex = 1
     }
-    sliderImg[currentSlide].classList.remove('hide');
-    
-    if (currentSlide + 1 === sliderImg.length) {
-        currentSlide = 0;
-    } else {
-        currentSlide++;
+    if (n < 1) {
+     slideIndex = slides.length
     }
+    for (let i = 0; i < slides.length; i++) {
+     slides[i].style.display = "none";
+    }
+    slides[slideIndex - 1].style.display = "block";
+   }
+   let isSliderRunningNow = false;
+   let slideInterval;
+   let start = document.querySelector('.start');
+   let pauseButton = document.querySelector('.stop')
 
-    setTimeout(slider, 3000);
-}
-}
+    start.addEventListener('click', () => {
+        if (isSliderRunningNow === false) {
+            slideInterval = setInterval(nextSlide, 3000);
+            isSliderRunningNow = true;
+        }
+    })
 
-setTimeout(timer, 3000);
-
-let stop = document.querySelector('.stop');
-let play = document.querySelector('.start');
-
-stop.addEventListener('click', () => {
-    breakPoint = 1;
-    clearTimeout(timer);
-});
-
-play.addEventListener('click', () => {
-    breakPoint = 0;
-    setTimeout(timer, 3000);
-});
-
+    pauseButton.addEventListener('click', () => {
+      clearInterval(slideInterval);
+      isSliderRunningNow = false;
+    });
