@@ -19,10 +19,11 @@
     }
     slides[slideIndex - 1].style.display = "block";
    }
-   let isSliderRunningNow = false;
-   let slideInterval;
-   let start = document.querySelector('.start');
-   let pauseButton = document.querySelector('.stop')
+
+   let isSliderRunningNow;
+   let slideInterval = setInterval(nextSlide, 3000);;
+   const start = document.querySelector('.start');
+   const pauseButton = document.querySelector('.stop')
 
     start.addEventListener('click', () => {
         if (isSliderRunningNow === false) {
