@@ -1,0 +1,106 @@
+.header-bar {
+  position: relative;
+
+  &__trigger {
+    margin: 23px 0 23px auto;
+    text-align: right;
+    width: 44px;
+    height: 37px;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include medium {
+      display: none;
+      position: relative;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    > .fa-bars {
+      display: none;
+      font-size: 25px;
+      color: white;
+    }
+
+    > .fa-times {
+      display: none;
+      color: white;
+      font-size: 25px;
+    }
+  }
+
+  .menu {
+    position: absolute;
+    top: 37px;
+    right: 10px;
+    display: none;
+
+    @include medium {
+      display: flex;
+      position: initial;
+      justify-content: space-between;
+      align-items: center;
+      margin: 41px 80px 43px;
+    }
+    @include large {
+      margin: 45px 180px 51px;
+    }
+
+    &__item {
+      background: #F5F5F5;
+      width: 142px;
+
+      @include medium {
+        text-align: center;
+        background: none;
+        width: initial;
+      }
+      @include large {
+        text-align: center;
+        background: none;
+        width: initial;
+      }
+
+      &:hover {
+        background: #E5E5E5;
+        @include medium {
+          background: none;
+        }
+      }
+    }
+
+    &__link {
+      margin: 4px 13px;
+      text-decoration: none;
+      font-size: 11px;
+      line-height: 22px;
+      letter-spacing: 1.1px;
+      text-transform: uppercase;
+      color: #4E4E4E;
+
+      @include medium {
+        margin: 0;
+      }
+      @include large {
+        margin: 0;
+      }
+
+      &:hover {
+        @include medium {
+          color: $green;
+        }
+      }
+    }
+
+    &__link--color {
+      color: $green;
+    }
+  }
+
+  .show {
+    display: block;
+  }
+}

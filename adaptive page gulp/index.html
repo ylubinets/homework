@@ -12,38 +12,34 @@
 </head>
 <body>
 <header>
-	<section class="nav container">
-		<div class="nav__trigger" id="trigger">
+	<section class="header-bar container">
+		<div class="header-bar__trigger" id="trigger">
 			<i class="fa fa-bars show" aria-hidden="true"></i>
 			<i class="fa fa-times " aria-hidden="true"></i>
 		</div>
-		
-		<ul class="nav__lists" id="menu">
-			<li class="nav__item"><a class="nav__link nav__link--color" href="#">Home</a></li>
-			<li class="nav__item"><a class="nav__link" href="#">About Us</a></li>
-			<li class="nav__item"><a class="nav__link" href="#">Our Journal</a></li>
-			<li class="nav__item"><a class="nav__link" href="#">Projects</a></li>
-			<li class="nav__item"><a class="nav__link" href="#">news</a></li>
-			<li class="nav__item"><a class="nav__link" href="#">features</a></li>
-			<li class="nav__item"><a class="nav__link" href="#">contact</a></li>
+		<ul class="header-bar__menu menu" id="menu">
+			<li class="menu__item"><a class="menu__link menu__link--color" href="#">Home</a></li>
+			<li class="menu__item"><a class="menu__link" href="#">About Us</a></li>
+			<li class="menu__item"><a class="menu__link" href="#">Our Journal</a></li>
+			<li class="menu__item"><a class="menu__link" href="#">Projects</a></li>
+			<li class="menu__item"><a class="menu__link" href="#">news</a></li>
+			<li class="menu__item"><a class="menu__link" href="#">features</a></li>
+			<li class="menu__item"><a class="menu__link" href="#">contact</a></li>
 		</ul>
 	</section>
-	<section class="container">
-		
+	<section class="picture container">
 		<picture>
 			<source media="(min-width: 768px) and (max-width: 1199px)" srcset="./dist/img/intro/intro-w768.jpg"/>
 			<source media="(min-width: 1200px)" srcset="./dist/img/intro/intro-w1200.jpg"/>
-			<img src="./dist/img/intro/intro-w320.jpg" alt="Picture"/>
+			<img class="picture__img" src="./dist/img/intro/intro-w320.jpg" alt="Picture"/>
 		</picture>
 	</section>
 </header>
-
-
 <main>
 	<section class="posts container">
-		<h2 class="title posts__title">- our Recent posts</h2>
+		<h2 class="posts__title title">- our Recent posts</h2>
 		<div class="posts__gallery">
-			<div class="posts__item post">
+			<div class="posts__item post item_1">
 				<img class="post__img" src="./dist/img/recent_posts/post-img1.jpg" alt="Picture"/>
 				<div class="post__about">
 					<h3 class="post__title">Aenean Adipiscing Etiam Vestibulum</h3>
@@ -51,7 +47,7 @@
 					<p class="post__text">Etiam porta sem malesuada euismod. Aenean leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
 				</div>
 			</div>
-			<div class="posts__item post">
+			<div class="posts__item post item_2">
 				<img class="post__img" src="./dist/img/recent_posts/post-img2.jpg" alt="Picture"/>
 				<div class="post__about">
 					<h3 class="post__title">Aenean Adipiscing Etiam Vestibulum</h3>
@@ -59,7 +55,7 @@
 					<p class="post__text">Etiam porta sem malesuada euismod. Aenean leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
 				</div>
 			</div>
-			<div class="posts__item post">
+			<div class="posts__item post item_3">
 				<img class="post__img" src="./dist/img/recent_posts/post-img3.jpg" alt="Picture"/>
 				<div class="post__about">
 					<h3 class="post__title">Aenean Adipiscing Etiam Vestibulum</h3>
@@ -67,7 +63,7 @@
 					<p class="post__text">Etiam porta sem malesuada euismod. Aenean leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
 				</div>
 			</div>
-			<div class="posts__item post">
+			<div class="posts__item post item_4">
 				<img class="post__img" src="./dist/img/recent_posts/post-img4.jpg" alt="Picture"/>
 				<div class="post__about">
 					<h3 class="post__title">Aenean Adipiscing Etiam Vestibulum</h3>
@@ -77,9 +73,7 @@
 			</div>
 		</div>
 	</section>
-
 </main>
-
 <footer>
 	<section class="footer container">
 		<h2 class="title footer__title">- get in touch with us -</h2>
@@ -88,24 +82,22 @@
 			amet sed donec malesuada ullamcorper odio. <span class="footer__text-second">Curabitur blandit tempus
 			porttitor vollisky inceptos mollisestor.</span>
 		</p>
-		<div class="footer__icons social">
-			<a class="social__icon" href="#"><img src="./dist/img/icon/rss.svg" alt=""/></a>
-			<a class="social__icon" href="#"><img src="./dist/img/icon/fb.svg" alt=""/></a>
-			<a class="social__icon" href="#"><img src="./dist/img/icon/t.svg" alt=""/></a>
-			<a class="social__icon" href="#"><img src="./dist/img/icon/drib.svg" alt=""/></a>
-			<a class="social__icon" href="#"><img src="./dist/img/icon/p.svg" alt=""/></a>
+		<div class="footer__social messenger">
+			<a class="messenger__icon" href="#"><img src="./dist/img/icon/rss.svg" alt="messenger"/></a>
+			<a class="messenger__icon" href="#"><img src="./dist/img/icon/fb.svg" alt="messenger"/></a>
+			<a class="messenger__icon" href="#"><img src="./dist/img/icon/t.svg" alt="messenger"/></a>
+			<a class="messenger__icon" href="#"><img src="./dist/img/icon/drib.svg" alt="messenger"/></a>
+			<a class="messenger__icon" href="#"><img src="./dist/img/icon/p.svg" alt="messenger"/></a>
 		</div>
-		<div class="footer__contacts contacts">
-			<p class="contacts__address">Moonshine St. 14-05 Light City / </p>
-			<a class="contacts__tel" href="tel:+001234567890">
+		<div class="footer__address address">
+			<p class="address__address">Moonshine St. 14-05 Light City / </p>
+			<a class="address__tel" href="tel:+001234567890">
 				&#160T. +00 (123) 456 78 90 / </a>
-			<a class="contacts__mail" href="mailto:first.last@email.com">
+			<a class="address__mail" href="mailto:first.last@email.com">
 				&#160first.last@email.com</a>
 		</div>
 	</section>
 </footer>
-
-
 <script src="./dist/js/scripts.min.js"></script>
 </body>
 </html>
