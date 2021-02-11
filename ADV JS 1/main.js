@@ -2,7 +2,7 @@
 const clients1 = ["Гилберт", "Сальваторе", "Пирс", "Соммерс", "Форбс", "Донован", "Беннет"];
 const clients2 = ["Пирс", "Зальцман", "Сальваторе", "Майклсон"];
 
-const clientsMain = new Set ([...clients1, ...clients2]);
+const clientsMain = [...clients1, ...clients2.filter(n => clients1.indexOf(n) === -1)];
 
 console.log(clientsMain)
 
@@ -55,10 +55,10 @@ const characters = [
 
 // 2
 
-const charactersShortInfo = characters.map(char => {
-    const {name, lastName, age} = char;
+const charactersShortInfo = characters.map(({name, lastName, age}) => {
     return {name, lastName, age};
 });
+
 
 // 3
 
@@ -124,9 +124,8 @@ const bookToAdd = {
 }
 
 
-const booksFull = [
-    ...books, ...new Set([bookToAdd])
-]
+const booksFull = [...books, bookToAdd];
+
 
 // 6
 
