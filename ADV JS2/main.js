@@ -30,26 +30,36 @@ const books = [
 
  const root = document.getElementById('root');
  const list = document.createElement('ul');
- root.prepend(list);
 
 function booksShow(arr) {
-     arr.map((item, index) => {
+
+    const root = document.getElementById('root');
+    const list = document.createElement('ul');
+
+     function createElem (item, index){
         const {author, name, price} = item;
-        try {
+
             if (!author) {
                 throw new Error(`Author missed: №${index + 1}`);
             } else if (!name) {
                 throw new Error(`Name missed:  №${index + 1}`);
             } else if (!price) {
                 throw new Error(`Price missed: №${index + 1}`);
-            } else {
-                const liList = document.createElement('li');
-                list.append(liList);
-                return  liList.innerText = (`Book №${index + 1}, Author: ${author}, Name: ${name}, Price: ${price}`);
             }
+            const liList = document.createElement('li');
+            list.append(liList);
+            liList.innerText = (`Author: ${author}, Name: ${name}, Price: ${price}`);
+            return liList;
+     }
+    arr.forEach((item, index) => {
+        try {
+            const listElement = createElem(item, index);
+            list.append(listElement);
         } catch (Error) {
             console.log(Error);
         }
-    })}
+    });
+    return root.append(list);
+}
 
     booksShow(books);
