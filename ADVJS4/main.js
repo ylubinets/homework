@@ -1,11 +1,9 @@
 
 function getFilms(url){
     fetch(url)
-        .then(response => response.json())
+        .then(res => res.json())
         .then(films => {
-            let container = document.getElementById('container')
             let ul = document.createElement('ul');
-            document.body.append(container);
             document.body.append(ul);
 
             films.results.forEach(el => {
@@ -18,9 +16,9 @@ function getFilms(url){
                 li.insertAdjacentHTML('beforeend', `<p class="episode-id">EPISODE  ${episode_id}</p><p class="description-text">DESCRIPTION <br> ${opening_crawl}</p><hr>`);
 
 
-                characters.forEach(item => {
-                    fetch(item)
-                        .then(response2 => response2.json())
+                characters.forEach(char => {
+                    fetch(char)
+                        .then(res => res.json())
                         .then(actor => {
                             filmTitle.insertAdjacentHTML('afterend', `${actor.name}<br>`);
                         })
