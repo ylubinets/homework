@@ -1,30 +1,31 @@
-
-function getFilms(url){
-    fetch(url)
-        .then(res => res.json())
-        .then(films => {
-            let ul = document.createElement('ul');
-            document.body.append(ul);
-
-            films.results.forEach(el => {
-                const {episode_id, title, opening_crawl, characters} = el;
-                let li = document.createElement('li');
-                let filmTitle = document.createElement('h3');
-                ul.append(li);
-                li.append(filmTitle);
-                filmTitle.append(title);
-                li.insertAdjacentHTML('beforeend', `<p class="episode-id">EPISODE  ${episode_id}</p><p class="description-text">DESCRIPTION <br> ${opening_crawl}</p><hr>`);
-
-
-                characters.forEach(char => {
-                    fetch(char)
-                        .then(res => res.json())
-                        .then(actor => {
-                            filmTitle.insertAdjacentHTML('afterend', `${actor.name}<br>`);
-                        })
-                })
+fetch("https://swapi.dev/api/films/")
+    .then(res => res.json())
+    .then(outcome => outcome.results)
+    .then(desc => {
+        let div = document.createElement("div");
+        desc.forEach(item => {
+            let divItem = document.createElement("div");
+            divItem.innerHTML = `
+                    <h1>${item.title}</h1>
+                    <span>EPISODE: ${item.episode_id}</span>
+                    <p>${item.opening_crawl}</p>`;
+            document.body.append(div);
+            div.append(divItem);
+            let ol = document.createElement("ol");
+            let characters = item.characters;
+            let fetches = characters.map(item => {
+                return fetch(item)
+                    .then(responsive => responsive.json())
+                    .then(name => name.name)
             })
-        })
-}
-getFilms('https://swapi.dev/api/films/');
-
+            Promise.all(fetches)
+                .then(dataset => {
+                    dataset.forEach(names => {
+                        const li = document.createElement("li");
+                        li.innerHTML = `${names}`;
+                        ol.append(li);
+                    });
+                })
+            divItem.append(ol)
+        });
+    });
