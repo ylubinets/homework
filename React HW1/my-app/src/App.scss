@@ -1,0 +1,52 @@
+.wrapper{
+  margin-top: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn{
+  padding: 10px;
+  color: white;
+}
+.modal {
+  width: 400px;
+  background-color: #e74c3c;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  &__header{
+    color: white;
+    padding: 21px 30px ;
+    background-color:rgba(0,0,0,.3);
+    display: flex;
+    justify-content: space-between;
+    &__cross{
+      cursor: pointer ;
+    }
+  }
+  &__buttons{
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px;
+    color: white;
+  }
+  &__buttons-block{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+.modal-txt{
+  padding: 21px 30px ;
+  color: white;
+}
+.modal-wrapper{
+  background-color:rgba(0,0,0,.3);
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
