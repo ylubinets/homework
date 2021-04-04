@@ -50,8 +50,8 @@ class App extends React.Component {
             {this.state.status === "secondModal" &&
             <Modal headerText={"Lakers || Brooklyn"} closeButton={true}
                    text={"Lakers in 6"} actions={[
-                <Button backgroundColor="rgba(0,0,0,.3)" text="Lakers" onClick={this.test} className="modal__buttons"/>,
-                <Button backgroundColor="rgba(0,0,0,.3)" text="Lakers" onClick={this.test} className="modal__buttons"/>
+                <Button backgroundColor="rgba(0,0,0,.3)" text="Lakers" className="modal__buttons"/>,
+                <Button backgroundColor="rgba(0,0,0,.3)" text="Lakers" className="modal__buttons"/>
             ]} status={this.hideModal}/>}
 
 
