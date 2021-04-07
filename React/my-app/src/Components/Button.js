@@ -3,9 +3,8 @@ import React from "react";
 class Button extends React.Component {
     render() {
         const {text, backgroundColor, onClick} = this.props;
-
         return <div>
-            <button className='btn' style={{backgroundColor: backgroundColor}} onClick={onClick}>{text}</button>
+            <button className='btn' onClick={onClick} style={{backgroundColor: backgroundColor}}>{text}</button>
         </div>
     }
 }
