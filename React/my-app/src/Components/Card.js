@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "./Button";
 import Modal from "./Modal";
+import Fav from "./Fav";
 
 class Card extends React.Component {
     constructor() {
@@ -9,7 +10,7 @@ class Card extends React.Component {
         this.state = {
             items: [],
             error: null,
-            openModal: false
+            openModal: false,
         }
 
     }
@@ -43,7 +44,7 @@ class Card extends React.Component {
     }
 
     render() {
-        const {items, error, openModal} = this.state
+        const {items, error, openModal, isFav} = this.state
          return (
              <div>
                  {error ? <div>{error}</div> :
@@ -51,6 +52,7 @@ class Card extends React.Component {
                      {items.map((item) => (
                          <div className='card' key={item.id}>
                              <img className='card__img' src={item.imgUrl} alt='Card' />
+                             <Fav/>
                              <div className='card__title'>{item.name}</div>
                              <div className='card__additional'>{item.color}</div>
                              <div className='card__price'>Price: {item.price}</div>
@@ -60,9 +62,9 @@ class Card extends React.Component {
                  </div> }
                  {openModal === true &&
                  <Modal headerText={"Add to card?"} closeButton={true}
-                        text={"You can buy it lol"} actions={[
-                     <Button backgroundColor="rgba(0,0,0,.3)" text="Add" className="modal__buttons"/>,
-                     <Button backgroundColor="rgba(0,0,0,.3)" text="Cancel" className="modal__buttons"/>
+                        text={"Lorem ipsum dolor"} actions={[
+                     <Button backgroundColor="rgba(0,0,0,.3)" text="Add" className="modal__buttons" onClick={this.hideModal}/>,
+                     <Button backgroundColor="rgba(0,0,0,.3)" text="Cancel" className="modal__buttons" onClick={this.hideModal}/>
                  ]} status={this.hideModal}/>}
              </div>
          )
