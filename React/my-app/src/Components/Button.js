@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 class Button extends React.Component {
     render() {
@@ -7,6 +8,13 @@ class Button extends React.Component {
             <button className='btn' onClick={onClick} style={{backgroundColor: backgroundColor}}>{text}</button>
         </div>
     }
+}
+
+Button.propTypes = {
+    className: PropTypes.string.isRequired,
+    backgroundColor: PropTypes.string,
+    text: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired
 }
 
 export default Button

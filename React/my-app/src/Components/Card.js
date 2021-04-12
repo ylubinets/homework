@@ -2,6 +2,7 @@ import React from "react";
 import Button from "./Button";
 import Modal from "./Modal";
 import Fav from "./Fav";
+import PropTypes from 'prop-types';
 
 class Card extends React.Component {
     constructor() {
@@ -47,5 +48,17 @@ class Card extends React.Component {
         )
     }
 }
+
+Card.propTypes = {
+    item: PropTypes.object.isRequired,
+    onClickAddToCart: PropTypes.func.isRequired,
+    favoritesArr: PropTypes.array,
+    onClickSetFavorites: PropTypes.func.isRequired,
+};
+
+Card.defaultProps = {
+    favoritesArr: []
+};
+
 
 export default Card;

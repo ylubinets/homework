@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from "./Card";
+import propTypes from 'prop-types';
 
 class List extends React.Component {
     constructor() {
@@ -59,5 +60,14 @@ class List extends React.Component {
         )
     }
 }
+
+List.propTypes = {
+    fav: propTypes.array,
+    id: propTypes.string,
+    items: propTypes.array,
+    error: propTypes.string,
+    favoritesArr: propTypes.array
+};
+
 
 export default List

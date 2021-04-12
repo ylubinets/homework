@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Fav extends React.Component {
     constructor() {
@@ -20,6 +21,16 @@ class Fav extends React.Component {
         )
     }
 }
+
+Fav.propTypes = {
+    id: PropTypes.string.isRequired,
+    favoritesArr: PropTypes.array,
+    onClickSetFavorites: PropTypes.func.isRequired
+};
+
+Fav.defaultProps = {
+    favoritesArr: []
+};
 
 
 export default Fav;
