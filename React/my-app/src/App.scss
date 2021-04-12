@@ -3,36 +3,7 @@
 body{
   font-family: Roboto sans-serif;
 }
-
-.wrapper{
-  margin-top: 250px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.btn{
-  margin: 10px;
-  padding: 10px;
-  color: white;
-}
 .modal {
-  width: 400px;
-  background-color: #e74c3c;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  &__header{
-    color: white;
-    padding: 21px 30px ;
-    background-color:rgba(0,0,0,.3);
-    display: flex;
-    justify-content: space-between;
-    &__cross{
-      cursor: pointer ;
-    }
-  }
   &__buttons{
     padding: 10px;
     border-radius: 10px;
@@ -45,53 +16,45 @@ body{
     justify-content: center;
   }
 }
-.modal-txt{
-  padding: 21px 30px ;
-  color: white;
-}
-.modal-wrapper{
-  background-color:rgba(0,0,0,.3);
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-}
 
-.cards_wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0 auto;
-    width: 90%;
-}
-
-.card {
-  width: 305px;
-  height: 405px;
-  border: 2px solid black;
-  border-radius: 3px;
-  margin: 10px;
-  box-shadow: 0 3px 3px #575555 inset;
-
-  &__img {
-    width: 100%;
-    height: 235px;
-  }
-
-  &__title {
-    padding: 2px 10px;
-    font-weight: bold;
-  }
-  &__price {
-    padding: 5px 10px;
-    font-weight: bold;
-  }
-  &__additional{
-    padding: 5px 10px;
-    font-style: italic;
-  }
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.fav__icon {
-  margin: 0 270px;
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import './App.scss'
-import List from "./Components/List";
+import List from "./Components/List/List";
 
 class App extends React.Component {
     constructor(props) {

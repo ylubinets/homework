@@ -1,7 +1,8 @@
 import React from "react";
-import Button from "./Button";
-import Modal from "./Modal";
-import Fav from "./Fav";
+import Button from "../Button/Button";
+import Modal from "../Modal/Modal";
+import Fav from "../Fav/Fav";
+import style from './Card.module.scss'
 import PropTypes from 'prop-types';
 
 class Card extends React.Component {
@@ -27,22 +28,22 @@ class Card extends React.Component {
 
         return (
             <div>
-                <div className='card'>
-                    <img className='card__img' src={imgUrl} alt='Card' />
+                <div className={`${style.card}`}>
+                    <img className={`${style.card__img}`} src={imgUrl} alt='Card' />
                     <Fav favoritesArr={favoritesArr} onClickSetFavorites={onClickSetFavorites} id={id}/>
-                    <div className='card__title'>{name}</div>
-                    <div className='card__additional'>{color}</div>
-                    <div className='card__price'>Price: {price}</div>
+                    <div className={`${style.card__title}`}>{name}</div>
+                    <div className={`${style.card__additional}`}>{color}</div>
+                    <div className={`${style.card__price}`}>Price: {price}</div>
                     <Button text='Add to Card' backgroundColor={'Black'} onClick={this.addToCart}/>
                 </div>
 
                 {this.state.isAddToCart &&
                 <Modal headerText={"Add to card?"} closeButton={true}
                        text={"Lorem ipsum dolor"} actions={[
-                    <Button backgroundColor="rgba(0,0,0,.3)" text="Add" className="modal__buttons" onClick={()=>{
+                    <Button key={'1'} backgroundColor="rgba(0,0,0,.3)" text="Add" className="modal__buttons" onClick={()=>{
                         onClickAddToCart(id)
                         this.hideModal() }}/>,
-                    <Button backgroundColor="rgba(0,0,0,.3)" text="Cancel" className="modal__buttons" onClick={this.hideModal}/>
+                    <Button key={'2'} backgroundColor="rgba(0,0,0,.3)" text="Cancel" className="modal__buttons" onClick={this.hideModal}/>
                 ]} status={this.hideModal}/>}
             </div>
         )

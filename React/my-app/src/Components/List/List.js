@@ -1,6 +1,7 @@
 import React from 'react';
-import Card from "./Card";
+import Card from "../Card/Card";
 import propTypes from 'prop-types';
+import style from './List.module.scss'
 
 class List extends React.Component {
     constructor() {
@@ -53,7 +54,7 @@ class List extends React.Component {
             )
         return (
             <div>
-                <div className='cards_wrapper'>
+                <div className={`${style.cards_wrapper}`}>
                     {error ? <div>{error}</div> : cardItem}
                 </div>
             </div>
