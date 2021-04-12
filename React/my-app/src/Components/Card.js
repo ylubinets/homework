@@ -8,41 +8,39 @@ class Card extends React.Component {
         super();
 
         this.state = {
-            openModal: false,
+            isAddToCart: false
         }
 
     }
-    openModal = () => {
-        this.setState({
-            openModal: true
-        })
+    addToCart = () => {
+        this.setState({isAddToCart: true})
     }
 
     hideModal = () => {
-        this.setState({
-            openModal: false
-        })
+        this.setState({isAddToCart: false})
     }
 
     render() {
-        const {openModal} = this.state
-        const  {imgUrl, name, color, price} = this.props;
+        const {item, onClickAddToCart, favoritesArr, onClickSetFavorites} = this.props
+        const  {imgUrl, name, color, price, id} = item;
 
         return (
             <div>
                 <div className='card'>
                     <img className='card__img' src={imgUrl} alt='Card' />
-                    <Fav/>
+                    <Fav favoritesArr={favoritesArr} onClickSetFavorites={onClickSetFavorites} id={id}/>
                     <div className='card__title'>{name}</div>
                     <div className='card__additional'>{color}</div>
                     <div className='card__price'>Price: {price}</div>
-                    <Button text='Add to Card' backgroundColor={'Black'} onClick={this.openModal}/>
+                    <Button text='Add to Card' backgroundColor={'Black'} onClick={this.addToCart}/>
                 </div>
 
-                {openModal === true &&
+                {this.state.isAddToCart &&
                 <Modal headerText={"Add to card?"} closeButton={true}
                        text={"Lorem ipsum dolor"} actions={[
-                    <Button backgroundColor="rgba(0,0,0,.3)" text="Add" className="modal__buttons" onClick={this.hideModal}/>,
+                    <Button backgroundColor="rgba(0,0,0,.3)" text="Add" className="modal__buttons" onClick={()=>{
+                        onClickAddToCart(id)
+                        this.hideModal() }}/>,
                     <Button backgroundColor="rgba(0,0,0,.3)" text="Cancel" className="modal__buttons" onClick={this.hideModal}/>
                 ]} status={this.hideModal}/>}
             </div>

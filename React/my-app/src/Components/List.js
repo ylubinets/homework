@@ -7,8 +7,21 @@ class List extends React.Component {
 
         this.state = {
             items: [],
-            error: null
+            error: null,
+            favoritesArr: localStorage.getItem('favorites') ? JSON.parse(localStorage.getItem('favorites')) : [],
+            cartArr: localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []
         }
+    }
+
+    onClickSetFavorites = (fav) => {
+        this.setState({favoritesArr: fav})
+        localStorage.setItem('favorites', JSON.stringify(fav))
+    }
+
+    onClickAddToCart = (vendorCode) => {
+        let array = [...this.state.cartArr, vendorCode]
+        this.setState({cartArr: array})
+        localStorage.setItem('cart', JSON.stringify(array))
     }
 
     componentDidMount() {
@@ -28,10 +41,14 @@ class List extends React.Component {
     }
 
     render() {
-        const {items, error} = this.state;
+        const {items, error, favoritesArr} = this.state;
 
         const cardItem = items.map((item) =>
-                <Card key={item.id} name={item.name} color={item.color} imgUrl={item.imgUrl} price={item.price}/>
+                <Card key={item.id} item={item}
+                      favoritesArr={favoritesArr}
+                      onClickSetFavorites={this.onClickSetFavorites}
+                      onClickAddToCart={this.onClickAddToCart}
+                />
             )
         return (
             <div>
