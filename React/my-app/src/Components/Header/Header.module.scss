@@ -1,0 +1,29 @@
+.header{
+  background-color: black;
+  display: flex;
+  color: #FFFFFF;
+  height: 70px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+
+  &__logo{
+    font-weight: 700;
+    font-size: 32px;
+    margin-left: 100px;
+  }
+
+  &__list{
+    display: flex;
+    align-items: center;
+    margin-right: 100px;
+  }
+  &__fav{
+    margin-right: 25px;
+  }
+  &__cart{
+    font-size: 17px;
+    font-weight: bold;
+  }
+
+}
