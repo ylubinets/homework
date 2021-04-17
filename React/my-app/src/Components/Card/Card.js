@@ -1,53 +1,38 @@
-import React from "react";
+import React, {useState} from "react";
 import Button from "../Button/Button";
 import Modal from "../Modal/Modal";
 import Fav from "../Fav/Fav";
 import style from './Card.module.scss'
 import PropTypes from 'prop-types';
 
-class Card extends React.Component {
-    constructor() {
-        super();
+const Card = (props) => {
 
-        this.state = {
-            isAddToCart: false
-        }
+   const [isAddToCart, addToCart] = useState(false);
 
-    }
-    addToCart = () => {
-        this.setState({isAddToCart: true})
-    }
+    const {item, onClickAddToCart, favoritesArr, onClickSetFavorites} = props
+    const  {imgUrl, name, color, price, id} = item;
 
-    hideModal = () => {
-        this.setState({isAddToCart: false})
-    }
-
-    render() {
-        const {item, onClickAddToCart, favoritesArr, onClickSetFavorites} = this.props
-        const  {imgUrl, name, color, price, id} = item;
-
-        return (
-            <div>
-                <div className={`${style.card}`}>
-                    <img className={`${style.card__img}`} src={imgUrl} alt='Card' />
-                    <Fav favoritesArr={favoritesArr} onClickSetFavorites={onClickSetFavorites} id={id}/>
-                    <div className={`${style.card__title}`}>{name}</div>
-                    <div className={`${style.card__additional}`}>{color}</div>
-                    <div className={`${style.card__price}`}>Price: {price}</div>
-                    <Button text='Add to Card' backgroundColor={'Black'} onClick={this.addToCart}/>
-                </div>
-
-                {this.state.isAddToCart &&
-                <Modal headerText={"Add to card?"} closeButton={true}
-                       text={"Lorem ipsum dolor"} actions={[
-                    <Button key={'1'} backgroundColor="rgba(0,0,0,.3)" text="Add" className="modal__buttons" onClick={()=>{
-                        onClickAddToCart(id)
-                        this.hideModal() }}/>,
-                    <Button key={'2'} backgroundColor="rgba(0,0,0,.3)" text="Cancel" className="modal__buttons" onClick={this.hideModal}/>
-                ]} status={this.hideModal}/>}
+    return (
+        <div>
+            <div className={`${style.card}`}>
+                <img className={`${style.card__img}`} src={imgUrl} alt='Card' />
+                <Fav favoritesArr={favoritesArr} onClickSetFavorites={onClickSetFavorites} id={id}/>
+                <div className={`${style.card__title}`}>{name}</div>
+                <div className={`${style.card__additional}`}>{color}</div>
+                <div className={`${style.card__price}`}>Price: {price}</div>
+                <Button text='Add to Card' backgroundColor={'Black'} onClick={() => addToCart(true)}/>
             </div>
-        )
-    }
+
+            {isAddToCart &&
+            <Modal headerText={"Add to card?"} closeButton={true}
+                   text={"Lorem ipsum dolor"} actions={[
+                       <Button key={'1'} backgroundColor="rgba(0,0,0,.3)" text="Add" className="modal__buttons" onClick={()=>{
+                        onClickAddToCart(id)
+                           addToCart(false) }}/>,
+                        <Button key={'2'} backgroundColor="rgba(0,0,0,.3)" text="Cancel" className="modal__buttons" onClick={() => addToCart(false)}/>
+                        ]} status={() => addToCart(false)}/>}
+        </div>
+    )
 }
 
 Card.propTypes = {
