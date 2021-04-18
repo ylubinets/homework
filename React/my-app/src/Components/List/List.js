@@ -1,74 +1,26 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Card from "../Card/Card";
 import propTypes from 'prop-types';
 import style from './List.module.scss'
 
-class List extends React.Component {
-    constructor() {
-        super();
+const List = (props) => {
 
-        this.state = {
-            items: [],
-            error: null,
-            favoritesArr: localStorage.getItem('favorites') ? JSON.parse(localStorage.getItem('favorites')) : [],
-            cartArr: localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []
-        }
-    }
+  const {items,error,favArr,setFav,setAddToCart, setDelFromCart} = props;
 
-    onClickSetFavorites = (fav) => {
-        this.setState({favoritesArr: fav})
-        localStorage.setItem('favorites', JSON.stringify(fav))
-    }
-
-    onClickAddToCart = (vendorCode) => {
-        let array = [...this.state.cartArr, vendorCode]
-        this.setState({cartArr: array})
-        localStorage.setItem('cart', JSON.stringify(array))
-    }
-
-    componentDidMount() {
-        fetch("items.json")
-            .then((res) => {
-                if (res.ok) {
-                    return res.json();
-                }
-                throw new Error("Failed to load");
-            })
-            .then((item) => {
-                this.setState({ items: item});
-            })
-            .catch((e) => {
-                this.setState({ error: e.message});
-            });
-    }
-
-    render() {
-        const {items, error, favoritesArr} = this.state;
-
-        const cardItem = items.map((item) =>
-                <Card key={item.id} item={item}
-                      favoritesArr={favoritesArr}
-                      onClickSetFavorites={this.onClickSetFavorites}
-                      onClickAddToCart={this.onClickAddToCart}
-                />
-            )
-        return (
-            <div>
-                <div className={`${style.cards_wrapper}`}>
-                    {error ? <div>{error}</div> : cardItem}
+    return (
+        <div>
+            <div className={`${style.cards_wrapper}`}>
+                {error ? <div>{error}</div> : items.map((item) =>
+                    <Card key={item.id} item={item}
+                          favArr={favArr}
+                          setFav={setFav}
+                          setAddToCart={setAddToCart}
+                          setDelFromCart={setDelFromCart}
+                          addOrDel={true}
+                    />)}
                 </div>
             </div>
         )
-    }
 }
-
-List.propTypes = {
-    fav: propTypes.array,
-    id: propTypes.string,
-    items: propTypes.array,
-    error: propTypes.string,
-    favoritesArr: propTypes.array
-};
-
 
 export default List

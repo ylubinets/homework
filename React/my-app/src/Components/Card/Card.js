@@ -7,43 +7,68 @@ import PropTypes from 'prop-types';
 
 const Card = (props) => {
 
-   const [isAddToCart, addToCart] = useState(false);
+    const [isAddToCart, setIsAddToCart] = useState(false);
+    const [isDeleteFromCart, setIsDeleteFromCart] = useState(false)
 
-    const {item, onClickAddToCart, favoritesArr, onClickSetFavorites} = props
+    function addToCart() {
+        setIsAddToCart(true)
+    }
+
+    function deleteFromCart() {
+        setIsDeleteFromCart(true)
+    }
+
+    function hideModal() {
+        setIsAddToCart(false)
+    }
+
+
+    const {item, setAddToCart, favArr, setFav, setDelFromCart, addOrDel} = props
     const  {imgUrl, name, color, price, id} = item;
 
     return (
         <div>
             <div className={`${style.card}`}>
                 <img className={`${style.card__img}`} src={imgUrl} alt='Card' />
-                <Fav favoritesArr={favoritesArr} onClickSetFavorites={onClickSetFavorites} id={id}/>
+                <Fav favArr={favArr} setFav={setFav} id={id}/>
                 <div className={`${style.card__title}`}>{name}</div>
                 <div className={`${style.card__additional}`}>{color}</div>
                 <div className={`${style.card__price}`}>Price: {price}</div>
-                <Button text='Add to Card' backgroundColor={'Black'} onClick={() => addToCart(true)}/>
+                {addOrDel ?
+                    <Button text='Add to Cart' backgroundColor={'Black'} onClick={addToCart}/> :
+                    <Button text='Delete from cart' backgroundColor={'Red'} onClick={deleteFromCart}/>
+                }
             </div>
 
             {isAddToCart &&
-            <Modal headerText={"Add to card?"} closeButton={true}
+            <Modal backgroundColor={'limegreen'} headerText={"Add to cart?"} closeButton={true}
                    text={"Lorem ipsum dolor"} actions={[
-                       <Button key={'1'} backgroundColor="rgba(0,0,0,.3)" text="Add" className="modal__buttons" onClick={()=>{
-                        onClickAddToCart(id)
-                           addToCart(false) }}/>,
-                        <Button key={'2'} backgroundColor="rgba(0,0,0,.3)" text="Cancel" className="modal__buttons" onClick={() => addToCart(false)}/>
-                        ]} status={() => addToCart(false)}/>}
+                <Button key={'1'} backgroundColor="rgba(0,0,0,.3)" text="Add" className="modal__buttons" onClick={()=>{
+                    setAddToCart(id)
+                    hideModal() }}/>,
+                <Button key={'2'} backgroundColor="rgba(0,0,0,.3)" text="Cancel" className="modal__buttons" onClick={hideModal}/>
+            ]} status={hideModal}/>}
+            {isDeleteFromCart &&
+            <Modal backgroundColor={'#e74c3c'} headerText={'Delete?'} closeButton={true}
+                   text={"Lorem ipsum dolor"} actions={[
+                <Button key={'1'} backgroundColor="rgba(0,0,0,.3)" text="Delete" className="modal__buttons" onClick={()=>{
+                    setDelFromCart(id)
+                    hideModal() }}/>,
+                <Button key={'2'} backgroundColor="rgba(0,0,0,.3)" text="Cancel" className="modal__buttons" onClick={hideModal}/>
+            ]} status={hideModal}/>}
         </div>
     )
 }
 
 Card.propTypes = {
     item: PropTypes.object.isRequired,
-    onClickAddToCart: PropTypes.func.isRequired,
-    favoritesArr: PropTypes.array,
-    onClickSetFavorites: PropTypes.func.isRequired,
+    setAddToCart: PropTypes.func.isRequired,
+    favArr: PropTypes.array,
+    setFav: PropTypes.func.isRequired,
 };
 
 Card.defaultProps = {
-    favoritesArr: []
+    favArr: []
 };
 
 

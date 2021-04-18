@@ -4,10 +4,10 @@ import style from './Modal.module.scss'
 
 const Modal = (props) => {
 
-    const {headerText, closeButton, text, status, actions} = props;
+    const {headerText, closeButton, text, status, actions, backgroundColor} = props;
     return (
         <div>
-            <div className={`${style.modal}`}>
+            <div className={`${style.modal}`} style={{backgroundColor: backgroundColor}}>
                 <div className={`${style.modal__header}`}>
                     {headerText}
                     {closeButton && <span className={`${style.modal__header__cross}`} onClick={() =>{status()}}>X</span>}

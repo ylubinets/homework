@@ -1,11 +1,11 @@
 import React from "react";
 import styles from './Header.module.scss'
-import {Link, Router, Route} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 const Header = () => {
 
     return (
-        <div className={styles.header}>
+        <header className={styles.header}>
             <div className={styles.header__logo}>
                <Link to='/'>
                    YLSneak
@@ -25,7 +25,7 @@ const Header = () => {
                     </li>
                 </ul>
             </div>
-        </div>
+        </header>
     )
 }
 
