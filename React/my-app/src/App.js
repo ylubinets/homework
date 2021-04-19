@@ -72,8 +72,7 @@ const Main = () => {
                         favArr={favArr}
                         setFav={setFav}
                         cartArr={cartArr}
-                        setCartArr={setCartArr}
-                        setAddToCart={setAddToCart}/>}/>
+                        setCartArr={setCartArr}/>}/>
             </Switch>
         </main>
     )

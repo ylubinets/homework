@@ -20,6 +20,7 @@ const Card = (props) => {
 
     function hideModal() {
         setIsAddToCart(false)
+        setIsDeleteFromCart(false)
     }
 
 
@@ -51,10 +52,10 @@ const Card = (props) => {
             {isDeleteFromCart &&
             <Modal backgroundColor={'#e74c3c'} headerText={'Delete?'} closeButton={true}
                    text={"Lorem ipsum dolor"} actions={[
-                <Button key={'1'} backgroundColor="rgba(0,0,0,.3)" text="Delete" className="modal__buttons" onClick={()=>{
+                <Button key={'3'} backgroundColor="rgba(0,0,0,.3)" text="Delete" className="modal__buttons" onClick={()=>{
                     setDelFromCart(id)
                     hideModal() }}/>,
-                <Button key={'2'} backgroundColor="rgba(0,0,0,.3)" text="Cancel" className="modal__buttons" onClick={hideModal}/>
+                <Button key={'4'} backgroundColor="rgba(0,0,0,.3)" text="Cancel" className="modal__buttons" onClick={hideModal}/>
             ]} status={hideModal}/>}
         </div>
     )
@@ -62,7 +63,7 @@ const Card = (props) => {
 
 Card.propTypes = {
     item: PropTypes.object.isRequired,
-    setAddToCart: PropTypes.func.isRequired,
+    setAddToCart: PropTypes.func,
     favArr: PropTypes.array,
     setFav: PropTypes.func.isRequired,
 };

@@ -30,7 +30,6 @@ Modal.propTypes = {
     closeButton: PropTypes.bool.isRequired,
     text: PropTypes.string.isRequired,
     actions: PropTypes.array.isRequired,
-    backgroundColor: PropTypes.string,
 };
 
 
