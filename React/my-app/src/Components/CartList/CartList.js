@@ -10,7 +10,6 @@ const CartList = (props) => {
         return !!cartArr.includes(item.id);
     })
 
-
     return (
         <div>
             <h1 className={styles.title}>Cart:</h1>
@@ -21,7 +20,7 @@ const CartList = (props) => {
                     return (
                         <div>
                             {cartArr.length &&
-                            <div key={item}>
+                            <div key={item.id}>
                                 <Card
                                     item={item}
                                     favArr={favArr}

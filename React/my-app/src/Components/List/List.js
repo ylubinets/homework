@@ -5,7 +5,7 @@ import style from './List.module.scss'
 
 const List = (props) => {
 
-    const {items, error, favArr, setFav, setAddToCart, setDelFromCart} = props;
+    const {items, error, favArr, setFav, setAddToCart,cartArr, delFromCart} = props;
 
     return (
         <div>
@@ -15,8 +15,8 @@ const List = (props) => {
                           favArr={favArr}
                           setFav={setFav}
                           setAddToCart={setAddToCart}
-                          setDelFromCart={setDelFromCart}
-                          addOrDel={true}
+                          setDelFromCart={delFromCart}
+                          addOrDel={!cartArr.includes(item.id)}
                     />)}
             </div>
         </div>

@@ -58,7 +58,8 @@ const Main = (props) => {
                         setAddToCart={setAddToCart}
                         delFromCart={delFromCart}
                         error={error}
-                        setError={setError}/>}/>
+                        setError={setError}/>
+                }/>
                 <Route path='/cart' render={() =>
                     <CartList
                         items={items}
@@ -71,7 +72,8 @@ const Main = (props) => {
                         setAddToCart={setAddToCart}
                         delFromCart={delFromCart}
                         error={error}
-                        setError={setError}/>}/>
+                        setError={setError}/>
+                }/>
             </Switch>
         </main>
     )
