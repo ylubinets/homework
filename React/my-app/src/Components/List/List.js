@@ -5,7 +5,7 @@ import style from './List.module.scss'
 
 const List = (props) => {
 
-  const {items,error,favArr,setFav,setAddToCart, setDelFromCart} = props;
+    const {items, error, favArr, setFav, setAddToCart, setDelFromCart} = props;
 
     return (
         <div>
@@ -18,9 +18,9 @@ const List = (props) => {
                           setDelFromCart={setDelFromCart}
                           addOrDel={true}
                     />)}
-                </div>
             </div>
-        )
+        </div>
+    )
 }
 
 export default List

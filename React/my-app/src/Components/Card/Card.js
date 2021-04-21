@@ -25,12 +25,12 @@ const Card = (props) => {
 
 
     const {item, setAddToCart, favArr, setFav, setDelFromCart, addOrDel} = props
-    const  {imgUrl, name, color, price, id} = item;
+    const {imgUrl, name, color, price, id} = item;
 
     return (
         <div>
             <div className={`${style.card}`}>
-                <img className={`${style.card__img}`} src={imgUrl} alt='Card' />
+                <img className={`${style.card__img}`} src={imgUrl} alt='Card'/>
                 <Fav favArr={favArr} setFav={setFav} id={id}/>
                 <div className={`${style.card__title}`}>{name}</div>
                 <div className={`${style.card__additional}`}>{color}</div>
@@ -44,18 +44,24 @@ const Card = (props) => {
             {isAddToCart &&
             <Modal backgroundColor={'limegreen'} headerText={"Add to cart?"} closeButton={true}
                    text={"Lorem ipsum dolor"} actions={[
-                <Button key={'1'} backgroundColor="rgba(0,0,0,.3)" text="Add" className="modal__buttons" onClick={()=>{
-                    setAddToCart(id)
-                    hideModal() }}/>,
-                <Button key={'2'} backgroundColor="rgba(0,0,0,.3)" text="Cancel" className="modal__buttons" onClick={hideModal}/>
+                <Button key={'1'} backgroundColor="rgba(0,0,0,.3)" text="Add" className="modal__buttons"
+                        onClick={() => {
+                            setAddToCart(id)
+                            hideModal()
+                        }}/>,
+                <Button key={'2'} backgroundColor="rgba(0,0,0,.3)" text="Cancel" className="modal__buttons"
+                        onClick={hideModal}/>
             ]} status={hideModal}/>}
             {isDeleteFromCart &&
             <Modal backgroundColor={'#e74c3c'} headerText={'Delete?'} closeButton={true}
                    text={"Lorem ipsum dolor"} actions={[
-                <Button key={'3'} backgroundColor="rgba(0,0,0,.3)" text="Delete" className="modal__buttons" onClick={()=>{
-                    setDelFromCart(id)
-                    hideModal() }}/>,
-                <Button key={'4'} backgroundColor="rgba(0,0,0,.3)" text="Cancel" className="modal__buttons" onClick={hideModal}/>
+                <Button key={'3'} backgroundColor="rgba(0,0,0,.3)" text="Delete" className="modal__buttons"
+                        onClick={() => {
+                            setDelFromCart(id)
+                            hideModal()
+                        }}/>,
+                <Button key={'4'} backgroundColor="rgba(0,0,0,.3)" text="Cancel" className="modal__buttons"
+                        onClick={hideModal}/>
             ]} status={hideModal}/>}
         </div>
     )

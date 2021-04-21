@@ -4,16 +4,11 @@ import Card from "../Card/Card";
 
 const CartList = (props) => {
 
-    const {items, cartArr, setCartArr, setFav, favArr} = props;
+    const {items, cartArr, setFav, favArr, delFromCart} = props;
 
-    function delFromCart(id) {
-        let array = cartArr.filter(function (item) {
-            return item !== id
-        })
-        setCartArr([...array])
-        localStorage.setItem('cart', JSON.stringify([...array]))
-    }
-
+    const cartList = items.filter(item => {
+        return !!cartArr.includes(item.id);
+    })
 
 
     return (
@@ -22,26 +17,18 @@ const CartList = (props) => {
 
             <div className={styles.cards_wrapper}>
                 {!cartArr.length && <h3>Cart is empty!</h3>}
-                {cartArr && [...new Set(cartArr)].map((cartItem) => {
-                    let itemCart = items.filter((el) => {
-                        if (el.id === cartItem) {
-                            return el
-                        } else {
-                            return null
-                        }
-                    })
-
+                {cartList.map((item) => {
                     return (
                         <div>
-                            {cartArr.length && <div>
-                                    <Card
-                                        key={itemCart.id}
-                                        item={itemCart[0]}
-                                        favArr={favArr}
-                                        setFav={setFav}
-                                        setDelFromCart={delFromCart}
-                                        addOrDel={false}
-                                    />
+                            {cartArr.length &&
+                            <div key={item}>
+                                <Card
+                                    item={item}
+                                    favArr={favArr}
+                                    setFav={setFav}
+                                    setDelFromCart={delFromCart}
+                                    addOrDel={false}
+                                />
                             </div>}
                         </div>
                     )

@@ -10,7 +10,9 @@ const Modal = (props) => {
             <div className={`${style.modal}`} style={{backgroundColor: backgroundColor}}>
                 <div className={`${style.modal__header}`}>
                     {headerText}
-                    {closeButton && <span className={`${style.modal__header__cross}`} onClick={() =>{status()}}>X</span>}
+                    {closeButton && <span className={`${style.modal__header__cross}`} onClick={() => {
+                        status()
+                    }}>X</span>}
                 </div>
                 <div className={`${style.modal__txt}`}>
                     {text}
@@ -23,7 +25,7 @@ const Modal = (props) => {
             </div>
             <div className={`${style.overlay}`} onClick={() => status()}/>
         </div>
-        );
+    );
 }
 
 Modal.propTypes = {
@@ -31,7 +33,6 @@ Modal.propTypes = {
     text: PropTypes.string.isRequired,
     actions: PropTypes.array.isRequired,
 };
-
 
 
 export default Modal;
