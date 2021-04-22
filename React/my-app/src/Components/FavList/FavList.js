@@ -15,7 +15,7 @@ const FavList = (props) => {
             <h1 className={styles.title}>Favourites:</h1>
 
             <div className={styles.cards_wrapper}>
-                {!favArr.length && <h3>FavList is empty!</h3>}
+                {!favArr.length && <h3 className={styles.empty}>FavList is empty!</h3>}
                 {favList.map((item) => {
                     return (
                         <div>

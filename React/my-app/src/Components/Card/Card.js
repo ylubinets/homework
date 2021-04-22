@@ -36,13 +36,13 @@ const Card = (props) => {
                 <div className={`${style.card__additional}`}>{color}</div>
                 <div className={`${style.card__price}`}>Price: {price}</div>
                 {addOrDel ?
-                    <Button text='Add to Cart' backgroundColor={'Black'} onClick={addToCart}/> :
-                    <Button text='Delete from cart' backgroundColor={'Red'} onClick={deleteFromCart}/>
+                    <Button text='Add to Cart' backgroundColor={'#00293C'} onClick={addToCart}/> :
+                    <Button text='Delete from cart' backgroundColor={'#F62A00'} onClick={deleteFromCart}/>
                 }
             </div>
 
             {isAddToCart &&
-            <Modal backgroundColor={'limegreen'} headerText={"Add to cart?"} closeButton={true}
+            <Modal backgroundColor={'#1E656D'} headerText={"Add to cart?"} closeButton={true}
                    text={"Lorem ipsum dolor"} actions={[
                 <Button key={'1'} backgroundColor="rgba(0,0,0,.3)" text="Add" className="modal__buttons"
                         onClick={() => {

@@ -1,20 +1,27 @@
-@import "~typeface-roboto";
+@import "~typeface-montserrat";
 
-body{
-  font-family: Roboto sans-serif;
+body {
+  font-family: Montserrat, sans-serif;
+  background: ghostwhite;
 }
+
 .modal {
-  &__buttons{
+  &__buttons {
     padding: 10px;
     border-radius: 10px;
     margin: 10px;
     color: white;
   }
-  &__buttons-block{
+
+  &__buttons-block {
     display: flex;
     align-items: center;
     justify-content: center;
   }
+}
+
+.container {
+  overflow-x: hidden;
 }
 
 html, body, div, span, applet, object, iframe,

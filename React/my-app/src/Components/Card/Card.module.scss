@@ -1,9 +1,9 @@
 .card {
   width: 300px;
-  border: 2px solid black;
+  border: 2px solid #1E656D;
   border-radius: 4px;
   margin: 10px;
-  box-shadow: 0 3px 3px #575555 inset;
+  background: white;
 
   &__img {
     width: 100%;
@@ -13,13 +13,16 @@
   &__title {
     padding: 2px 10px;
     font-weight: bold;
+    color: #00293C;
   }
   &__price {
     padding: 5px 10px;
     font-weight: bold;
+    color: #00293C;
   }
   &__additional{
     padding: 5px 10px;
     font-style: italic;
+    color: #1E656D;
   }
 }

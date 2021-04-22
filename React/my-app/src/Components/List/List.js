@@ -1,15 +1,15 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import Card from "../Card/Card";
-import propTypes from 'prop-types';
-import style from './List.module.scss'
+import styles from './List.module.scss'
 
 const List = (props) => {
 
-    const {items, error, favArr, setFav, setAddToCart,cartArr, delFromCart} = props;
+    const {items, error, favArr, setFav, setAddToCart, cartArr, delFromCart} = props;
 
     return (
         <div>
-            <div className={`${style.cards_wrapper}`}>
+            <h1 className={styles.title}>Shoes:</h1>
+            <div className={`${styles.cards_wrapper}`}>
                 {error ? <div>{error}</div> : items.map((item) =>
                     <Card key={item.id} item={item}
                           favArr={favArr}

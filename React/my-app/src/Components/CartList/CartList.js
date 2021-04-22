@@ -15,7 +15,7 @@ const CartList = (props) => {
             <h1 className={styles.title}>Cart:</h1>
 
             <div className={styles.cards_wrapper}>
-                {!cartArr.length && <h3>Cart is empty!</h3>}
+                {!cartArr.length && <h3 className={styles.empty}>Cart is empty!</h3>}
                 {cartList.map((item) => {
                     return (
                         <div>

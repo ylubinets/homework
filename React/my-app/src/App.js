@@ -25,7 +25,7 @@ const App = () => {
     }, []);
 
     return (
-        <div>
+        <div className={'container'}>
             <Header/>
             <Main items={items} setItems={setItems} error={error} setError={setError}/>
         </div>
