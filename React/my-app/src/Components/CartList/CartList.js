@@ -40,7 +40,7 @@ const CartList = (props) => {
                     )
                 })}
             </div>
-            <h2 className={styles.total}>Total: {totalSum()} </h2>
+            {cartArr.length && <h2 className={styles.total}>Total: {totalSum()} </h2>}
         </div>
     )
 }
