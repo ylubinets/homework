@@ -26,7 +26,7 @@ const CartList = (props) => {
                                     favArr={favArr}
                                     setFav={setFav}
                                     setDelFromCart={delFromCart}
-                                    addOrDel={false}
+                                    addOrDel={!cartArr.includes(item.id)}
                                 />
                             </div>}
                         </div>
