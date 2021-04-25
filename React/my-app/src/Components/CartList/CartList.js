@@ -10,13 +10,6 @@ const CartList = (props) => {
         return !!cartArr.includes(item.id);
     })
 
-    function totalSum() {
-        const sum = cartArr.map((el) => items.find((item) => el === item.id));
-        return sum.reduce(function (sum, elem) {
-            return sum + elem.price
-        }, 0);
-    }
-
     return (
         <div>
             <h1 className={styles.title}>Cart:</h1>
@@ -40,7 +33,6 @@ const CartList = (props) => {
                     )
                 })}
             </div>
-            {cartArr.length && <h2 className={styles.total}>Total: {totalSum()} </h2>}
         </div>
     )
 }
