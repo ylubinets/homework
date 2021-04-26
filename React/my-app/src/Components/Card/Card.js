@@ -24,14 +24,14 @@ const Card = (props) => {
     }
 
 
-    const {item, setAddToCart, favArr, setFav, setDelFromCart, isDelBtn} = props
-    const {imgUrl, name, color, price, id} = item;
+    const {item, setAddToCart, onFavClick, setDelFromCart, isDelBtn} = props
+    const {imgUrl, name, color, price, id, isFav} = item;
 
     return (
         <div>
             <div className={`${style.card}`}>
                 <img className={`${style.card__img}`} src={imgUrl} alt='Card'/>
-                <Fav favArr={favArr} setFav={setFav} id={id}/>
+                <Fav isFav={isFav} onFavClick={onFavClick} />
                 <div className={`${style.card__title}`}>{name}</div>
                 <div className={`${style.card__additional}`}>{color}</div>
                 <div className={`${style.card__price}`}>Price: {price}</div>
@@ -71,7 +71,6 @@ Card.propTypes = {
     item: PropTypes.object.isRequired,
     setAddToCart: PropTypes.func,
     favArr: PropTypes.array,
-    setFav: PropTypes.func.isRequired,
 };
 
 Card.defaultProps = {

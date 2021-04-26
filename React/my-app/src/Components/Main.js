@@ -8,11 +8,6 @@ const Main = (props) => {
     const [favArr, setFavArr] = useState(localStorage.getItem('fav') ? JSON.parse(localStorage.getItem('fav')) : []);
     const [cartArr, setCartArr] = useState(localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []);
 
-    function setFav(fav) {
-        setFavArr(fav)
-        localStorage.setItem('fav', JSON.stringify(fav))
-    }
-
     function setAddToCart(id) {
         let array = [...cartArr, id]
         setCartArr(array)
@@ -27,15 +22,33 @@ const Main = (props) => {
         localStorage.setItem('cart', JSON.stringify([...array]))
     }
 
+    function onFavClick (id) {
+        let fav;
+
+        if(favArr.includes(id)) {
+            fav = favArr.filter((n) => n !== id)
+        } else {
+            fav = [...favArr, id]
+        }
+        setFavArr(fav)
+        localStorage.setItem('fav', JSON.stringify(fav))
+    }
+
+    const mapWithFav = (item) => {
+        return {
+            ...item,
+            isFav: favArr.includes(item.id)
+        }
+    }
+
     return (
         <main>
             <Switch>
                 <Route exact path='/' render={() =>
                     <List
-                        items={items}
-                        favArr={favArr}
-                        setFav={setFav}
+                        items={items.map(mapWithFav)}
                         cartArr={cartArr}
+                        onFavClick={onFavClick}
                         setAddToCart={setAddToCart}
                         delFromCart={delFromCart}
                         error={error}
@@ -45,12 +58,9 @@ const Main = (props) => {
                 }/>
                 <Route path='/fav' render={() =>
                     <List
-                        items={items.filter(item => {
-                            return !!favArr.includes(item.id);
-                        })}
-                        favArr={favArr}
-                        setFav={setFav}
+                        items={items.filter(item => favArr.includes(item.id)).map(mapWithFav)}
                         cartArr={cartArr}
+                        onFavClick={onFavClick}
                         setAddToCart={setAddToCart}
                         delFromCart={delFromCart}
                         error={error}
@@ -60,12 +70,9 @@ const Main = (props) => {
                 }/>
                 <Route path='/cart' render={() =>
                     <List
-                        items={items.filter(item => {
-                            return !!cartArr.includes(item.id);
-                        })}
-                        favArr={favArr}
-                        setFav={setFav}
+                        items={items.filter(item => cartArr.includes(item.id)).map(mapWithFav)}
                         cartArr={cartArr}
+                        onFavClick={onFavClick}
                         delFromCart={delFromCart}
                         error={error}
                         setError={setError}

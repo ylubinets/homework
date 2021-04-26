@@ -4,7 +4,7 @@ import styles from './List.module.scss'
 
 const List = (props) => {
 
-    const {items, error, favArr, setFav, setAddToCart, cartArr, delFromCart, title} = props;
+    const {items, error, isFav, onFavClick, setAddToCart, cartArr, delFromCart, title} = props;
 
     return (
         <div>
@@ -12,8 +12,8 @@ const List = (props) => {
             <div className={`${styles.cards_wrapper}`}>
                 {error ? <div>{error}</div> : items.map((item) =>
                     <Card key={item.id} item={item}
-                          favArr={favArr}
-                          setFav={setFav}
+                          isFav={isFav}
+                          onFavClick={() => onFavClick(item.id)}
                           setAddToCart={setAddToCart}
                           setDelFromCart={delFromCart}
                           isDelBtn={!cartArr.includes(item.id)}
