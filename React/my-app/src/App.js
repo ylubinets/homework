@@ -26,7 +26,7 @@ const App = () => {
   return (
     <div className={"container"}>
       <Header />
-      <Main items={items} error={error} setError={setError} />
+      <Main items={items} error={error} />
     </div>
   );
 };

@@ -4,7 +4,7 @@ import {Switch, Route} from "react-router-dom";
 
 const Main = (props) => {
 
-    const {items, error, setError} = props
+    const {items, error} = props
     const [favArr, setFavArr] = useState(localStorage.getItem('fav') ? JSON.parse(localStorage.getItem('fav')) : []);
     const [cartArr, setCartArr] = useState(localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []);
 
@@ -51,8 +51,8 @@ const Main = (props) => {
                         onFavClick={onFavClick}
                         setAddToCart={setAddToCart}
                         delFromCart={delFromCart}
+                        listEmpty={items}
                         error={error}
-                        setError={setError}
                         title={'Shoes:'}
                     />
                 }/>
@@ -63,8 +63,8 @@ const Main = (props) => {
                         onFavClick={onFavClick}
                         setAddToCart={setAddToCart}
                         delFromCart={delFromCart}
+                        listEmpty={favArr}
                         error={error}
-                        setError={setError}
                         title={'Favourites:'}
                     />
                 }/>
@@ -74,8 +74,8 @@ const Main = (props) => {
                         cartArr={cartArr}
                         onFavClick={onFavClick}
                         delFromCart={delFromCart}
+                        listEmpty={cartArr}
                         error={error}
-                        setError={setError}
                         title={'Cart:'}
                     />
                 }/>
