@@ -7,8 +7,8 @@ import PropTypes from 'prop-types';
 
 const Card = (props) => {
 
-    const [isAddToCart, setIsAddToCart] = useState(false);
-    const [isDeleteFromCart, setIsDeleteFromCart] = useState(false)
+    const [modalAdd, setIsAddToCart] = useState(false);
+    const [modalDel, setIsDeleteFromCart] = useState(false)
 
     function addToCart() {
         setIsAddToCart(true)
@@ -24,7 +24,7 @@ const Card = (props) => {
     }
 
 
-    const {item, setAddToCart, favArr, setFav, setDelFromCart, addOrDel} = props
+    const {item, setAddToCart, favArr, setFav, setDelFromCart, isDelBtn} = props
     const {imgUrl, name, color, price, id} = item;
 
     return (
@@ -35,13 +35,13 @@ const Card = (props) => {
                 <div className={`${style.card__title}`}>{name}</div>
                 <div className={`${style.card__additional}`}>{color}</div>
                 <div className={`${style.card__price}`}>Price: {price}</div>
-                {addOrDel ?
+                {isDelBtn ?
                     <Button text='Add to Cart' backgroundColor={'#00293C'} onClick={addToCart}/> :
                     <Button text='Delete from cart' backgroundColor={'#F62A00'} onClick={deleteFromCart}/>
                 }
             </div>
 
-            {isAddToCart &&
+            {modalAdd &&
             <Modal backgroundColor={'#1E656D'} headerText={"Add to cart?"} closeButton={true}
                    text={"Lorem ipsum dolor"} actions={[
                 <Button key={'1'} backgroundColor="rgba(0,0,0,.3)" text="Add" className="modal__buttons"
@@ -52,7 +52,7 @@ const Card = (props) => {
                 <Button key={'2'} backgroundColor="rgba(0,0,0,.3)" text="Cancel" className="modal__buttons"
                         onClick={hideModal}/>
             ]} status={hideModal}/>}
-            {isDeleteFromCart &&
+            {modalDel &&
             <Modal backgroundColor={'#e74c3c'} headerText={'Delete?'} closeButton={true}
                    text={"Lorem ipsum dolor"} actions={[
                 <Button key={'3'} backgroundColor="rgba(0,0,0,.3)" text="Delete" className="modal__buttons"

@@ -1,12 +1,10 @@
 import React, {useState} from "react";
 import List from "./List/List";
-import CartList from "./CartList/CartList";
-import FavList from "./FavList/FavList";
 import {Switch, Route} from "react-router-dom";
 
 const Main = (props) => {
 
-    const {items, setItems, error, setError} = props
+    const {items, error, setError} = props
     const [favArr, setFavArr] = useState(localStorage.getItem('fav') ? JSON.parse(localStorage.getItem('fav')) : []);
     const [cartArr, setCartArr] = useState(localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []);
 
@@ -35,44 +33,44 @@ const Main = (props) => {
                 <Route exact path='/' render={() =>
                     <List
                         items={items}
-                        setItems={setItems}
                         favArr={favArr}
-                        setFavArr={setFavArr}
                         setFav={setFav}
                         cartArr={cartArr}
-                        setCartArr={setCartArr}
                         setAddToCart={setAddToCart}
                         delFromCart={delFromCart}
                         error={error}
-                        setError={setError}/>
+                        setError={setError}
+                        title={'Shoes:'}
+                    />
                 }/>
                 <Route path='/fav' render={() =>
-                    <FavList
-                        items={items}
-                        setItems={setItems}
+                    <List
+                        items={items.filter(item => {
+                            return !!favArr.includes(item.id);
+                        })}
                         favArr={favArr}
-                        setFavArr={setFavArr}
                         setFav={setFav}
                         cartArr={cartArr}
-                        setCartArr={setCartArr}
                         setAddToCart={setAddToCart}
                         delFromCart={delFromCart}
                         error={error}
-                        setError={setError}/>
+                        setError={setError}
+                        title={'Favourites:'}
+                    />
                 }/>
                 <Route path='/cart' render={() =>
-                    <CartList
-                        items={items}
-                        setItems={setItems}
+                    <List
+                        items={items.filter(item => {
+                            return !!cartArr.includes(item.id);
+                        })}
                         favArr={favArr}
-                        setFavArr={setFavArr}
                         setFav={setFav}
                         cartArr={cartArr}
-                        setCartArr={setCartArr}
-                        setAddToCart={setAddToCart}
                         delFromCart={delFromCart}
                         error={error}
-                        setError={setError}/>
+                        setError={setError}
+                        title={'Cart:'}
+                    />
                 }/>
             </Switch>
         </main>
