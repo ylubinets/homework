@@ -1,14 +1,17 @@
 import React, {useState} from "react";
 import List from "./List/List";
 import {Switch, Route} from "react-router-dom";
+import Modal from "./Modal/Modal";
+import Button from "./Button/Button";
 
 const Main = (props) => {
 
     const {items, error} = props
     const [favArr, setFavArr] = useState(localStorage.getItem('fav') ? JSON.parse(localStorage.getItem('fav')) : []);
     const [cartArr, setCartArr] = useState(localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []);
+    const [actionModal, setActionModal] = useState(null);
 
-    function setAddToCart(id) {
+    function addToCart(id) {
         let array = [...cartArr, id]
         setCartArr(array)
         localStorage.setItem('cart', JSON.stringify(array))
@@ -41,6 +44,24 @@ const Main = (props) => {
         }
     }
 
+    const addAction = (id) => {
+        setActionModal({
+            actionType: 'add',
+            id: id
+        })
+    }
+    const delAction = (id) => {
+        setActionModal({
+            actionType: 'del',
+            id: id
+        })
+    }
+
+    const hideModal = () => {
+        setActionModal(null)
+    }
+
+
     return (
         <main>
             <Switch>
@@ -49,8 +70,8 @@ const Main = (props) => {
                         items={items.map(mapWithFav)}
                         cartArr={cartArr}
                         onFavClick={onFavClick}
-                        setAddToCart={setAddToCart}
-                        delFromCart={delFromCart}
+                        addToCart={addAction}
+                        delFromCart={delAction}
                         listEmpty={items}
                         error={error}
                         title={'Shoes:'}
@@ -61,8 +82,8 @@ const Main = (props) => {
                         items={items.filter(item => favArr.includes(item.id)).map(mapWithFav)}
                         cartArr={cartArr}
                         onFavClick={onFavClick}
-                        setAddToCart={setAddToCart}
-                        delFromCart={delFromCart}
+                        addToCart={addAction}
+                        delFromCart={delAction}
                         listEmpty={favArr}
                         error={error}
                         title={'Favourites:'}
@@ -73,13 +94,30 @@ const Main = (props) => {
                         items={items.filter(item => cartArr.includes(item.id)).map(mapWithFav)}
                         cartArr={cartArr}
                         onFavClick={onFavClick}
-                        delFromCart={delFromCart}
+                        delFromCart={delAction}
                         listEmpty={cartArr}
                         error={error}
                         title={'Cart:'}
                     />
                 }/>
             </Switch>
+            {actionModal &&
+            <Modal backgroundColor={actionModal.actionType === 'add' ? '#1E656D' : '#e74c3c'}
+                   headerText={actionModal.actionType === 'add' ? "Add to cart?" : "Delete?"}
+                   closeButton={true}
+                   text={"Are you sure?"}
+                   actions={[
+                <Button key={'1'} backgroundColor="rgba(0,0,0,.3)"
+                        text={actionModal.actionType === 'add' ? "Add" : "Delete"} className="modal__buttons"
+                        onClick={() => {
+                            actionModal.actionType === 'add' ?
+                                addToCart(actionModal.id) :
+                                delFromCart(actionModal.id)
+                            hideModal()
+                        }}/>,
+                <Button key={'2'} backgroundColor="rgba(0,0,0,.3)" text="Cancel" className="modal__buttons"
+                        onClick={hideModal}/>
+            ]} status={hideModal}/>}
         </main>
     )
 }
