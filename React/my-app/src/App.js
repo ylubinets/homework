@@ -1,32 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./App.scss";
 import Header from "./Components/Header/Header";
 import Main from "./Components/Main";
+import { useDispatch, useSelector } from "react-redux";
+import { loadItems } from "./Redux/actions";
 
 const App = () => {
-  const [items, setItems] = useState([]);
-  const [error, setError] = useState(null);
+  const dispatch = useDispatch();
+
+  const items = useSelector((state) => state.items.items);
+  const error = useSelector((state) => state.items.error)
 
   useEffect(() => {
-    fetch("items.json")
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        throw new Error("Failed to load");
-      })
-      .then((item) => {
-        setItems(item);
-      })
-      .catch((e) => {
-        setError(e.message);
-      });
+    dispatch(loadItems());
   }, []);
 
   return (
     <div className={"container"}>
       <Header />
-      <Main items={items} error={error} />
+      <Main items={items} error={error}/>
     </div>
   );
 };

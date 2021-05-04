@@ -4,8 +4,8 @@ import { Switch, Route } from "react-router-dom";
 import Modal from "./Modal/Modal";
 import Button from "./Button/Button";
 
-const Main = (props) => {
-  const { items, error } = props;
+const Main = ({items, error}) => {
+
   const [favArr, setFavArr] = useState(
     localStorage.getItem("fav") ? JSON.parse(localStorage.getItem("fav")) : []
   );
