@@ -1,9 +1,14 @@
-import { HIDE_MODAL, OPEN_MODAL } from "../types";
+import { HIDE_MODAL, ADD_MODAL, DEL_MODAL } from "../types";
 import { INITIAL_STATE } from "./itemsReducer";
 
 const modalReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case OPEN_MODAL:
+    case ADD_MODAL:
+      return {
+        ...state,
+        isModalOpen: action.payload,
+      };
+    case DEL_MODAL:
       return {
         ...state,
         isModalOpen: action.payload,
@@ -19,5 +24,4 @@ const modalReducer = (state = INITIAL_STATE, action) => {
   }
 };
 
-export {modalReducer}
-
+export { modalReducer };

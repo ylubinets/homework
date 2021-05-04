@@ -1,20 +1,15 @@
-import {
-  ADD_ID_CART,
-  DEL_ID_CART,
-  ITEMS_LOADED,
-  LOAD_FAILED,
-  SET_FAV_ARR,
-  SET_CART_ARR,
-} from "../types";
+import { ITEMS_LOADED, LOAD_FAILED, SET_FAV_ARR, SET_CART_ARR } from "../types";
 
 export const INITIAL_STATE = {
   items: [],
   error: null,
-  favArr: [],
-  cartArr: [],
-  addToCart: null,
-  delFromCart: null,
-  isModalOpen: false,
+  favArr: localStorage.getItem("fav")
+    ? JSON.parse(localStorage.getItem("fav"))
+    : [],
+  cartArr: localStorage.getItem("cart")
+    ? JSON.parse(localStorage.getItem("cart"))
+    : [],
+  isModalOpen: null,
 };
 
 const itemsReducer = (state = INITIAL_STATE, action) => {
@@ -32,22 +27,12 @@ const itemsReducer = (state = INITIAL_STATE, action) => {
     case SET_FAV_ARR:
       return {
         ...state,
-        favArr: [...state.favArr, action.payload],
+        favArr: action.payload,
       };
     case SET_CART_ARR:
       return {
         ...state,
-        cartArr: [...state.cartArr, action.payload],
-      };
-    case ADD_ID_CART:
-      return {
-        ...state,
-        addToCart: action.payload,
-      };
-    case DEL_ID_CART:
-      return {
-        ...state,
-        delFromCart: action.payload,
+        cartArr: action.payload,
       };
 
     default:

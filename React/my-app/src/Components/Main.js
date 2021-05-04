@@ -3,20 +3,20 @@ import List from "./List/List";
 import { Switch, Route } from "react-router-dom";
 import Modal from "./Modal/Modal";
 import Button from "./Button/Button";
+import {useDispatch, useSelector} from "react-redux";
+import {addModal, delModal, hideModal, setCartArr, setFavArr} from "../Redux/actions";
 
 const Main = ({items, error}) => {
+  const dispatch = useDispatch();
 
-  const [favArr, setFavArr] = useState(
-    localStorage.getItem("fav") ? JSON.parse(localStorage.getItem("fav")) : []
-  );
-  const [cartArr, setCartArr] = useState(
-    localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : []
-  );
-  const [actionModal, setActionModal] = useState(null);
+  const favArr = useSelector(state => state.items.favArr);
+  const cartArr = useSelector(state => state.items.cartArr);
+
+  const isModalOpen = useSelector(state => state.modal.isModalOpen)
 
   function addToCart(id) {
     let array = [...cartArr, id];
-    setCartArr(array);
+    dispatch(setCartArr(array))
     localStorage.setItem("cart", JSON.stringify(array));
   }
 
@@ -24,7 +24,7 @@ const Main = ({items, error}) => {
     let array = cartArr.filter(function (item) {
       return item !== id;
     });
-    setCartArr([...array]);
+    dispatch(setCartArr([...array]));
     localStorage.setItem("cart", JSON.stringify([...array]));
   }
 
@@ -36,7 +36,7 @@ const Main = ({items, error}) => {
     } else {
       fav = [...favArr, id];
     }
-    setFavArr(fav);
+    dispatch(setFavArr(fav));
     localStorage.setItem("fav", JSON.stringify(fav));
   }
 
@@ -48,20 +48,14 @@ const Main = ({items, error}) => {
   };
 
   const addAction = (id) => {
-    setActionModal({
-      actionType: "add",
-      id: id,
-    });
+    dispatch(addModal(id))
   };
   const delAction = (id) => {
-    setActionModal({
-      actionType: "del",
-      id: id,
-    });
+    dispatch(delModal(id))
   };
 
-  const hideModal = () => {
-    setActionModal(null);
+  const closeModal = () => {
+    dispatch(hideModal())
   };
 
   return (
@@ -117,13 +111,13 @@ const Main = ({items, error}) => {
           )}
         />
       </Switch>
-      {actionModal && (
+      {isModalOpen && (
         <Modal
           backgroundColor={
-            actionModal.actionType === "add" ? "#1E656D" : "#e74c3c"
+            isModalOpen.actionType === "add" ? "#1E656D" : "#e74c3c"
           }
           headerText={
-            actionModal.actionType === "add" ? "Add to cart?" : "Delete?"
+            isModalOpen.actionType === "add" ? "Add to cart?" : "Delete?"
           }
           closeButton={true}
           text={"Are you sure?"}
@@ -131,13 +125,13 @@ const Main = ({items, error}) => {
             <Button
               key={"1"}
               backgroundColor="rgba(0,0,0,.3)"
-              text={actionModal.actionType === "add" ? "Add" : "Delete"}
+              text={isModalOpen.actionType === "add" ? "Add" : "Delete"}
               className="modal__buttons"
               onClick={() => {
-                actionModal.actionType === "add"
-                  ? addToCart(actionModal.id)
-                  : delFromCart(actionModal.id);
-                hideModal();
+                isModalOpen.actionType === "add"
+                  ? addToCart(isModalOpen.id)
+                  : delFromCart(isModalOpen.id);
+                closeModal();
               }}
             />,
             <Button
@@ -145,10 +139,10 @@ const Main = ({items, error}) => {
               backgroundColor="rgba(0,0,0,.3)"
               text="Cancel"
               className="modal__buttons"
-              onClick={hideModal}
+              onClick={closeModal}
             />,
           ]}
-          status={hideModal}
+          status={closeModal}
         />
       )}
     </main>
