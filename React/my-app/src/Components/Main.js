@@ -1,18 +1,23 @@
-import React, { useState } from "react";
+import React, {useEffect} from "react";
 import List from "./List/List";
 import { Switch, Route } from "react-router-dom";
 import Modal from "./Modal/Modal";
 import Button from "./Button/Button";
 import {useDispatch, useSelector} from "react-redux";
-import {addModal, delModal, hideModal, setCartArr, setFavArr} from "../Redux/actions";
+import {addModal, delModal, hideModal, loadItems, setCartArr} from "../Redux/actions";
 
-const Main = ({items, error}) => {
+const Main = () => {
   const dispatch = useDispatch();
 
-  const favArr = useSelector(state => state.items.favArr);
-  const cartArr = useSelector(state => state.items.cartArr);
+  const items = useSelector((state) => state.items.items)
+  const error = useSelector((state) => state.items.error)
+  const favArr = useSelector((state) => state.items.favArr);
+  const cartArr = useSelector((state) => state.items.cartArr);
+  const isModalOpen = useSelector((state) => state.modal.isModalOpen)
 
-  const isModalOpen = useSelector(state => state.modal.isModalOpen)
+  useEffect(() => {
+    dispatch(loadItems())
+  }, [dispatch]);
 
   function addToCart(id) {
     let array = [...cartArr, id];
@@ -26,18 +31,6 @@ const Main = ({items, error}) => {
     });
     dispatch(setCartArr([...array]));
     localStorage.setItem("cart", JSON.stringify([...array]));
-  }
-
-  function onFavClick(id) {
-    let fav;
-
-    if (favArr.includes(id)) {
-      fav = favArr.filter((n) => n !== id);
-    } else {
-      fav = [...favArr, id];
-    }
-    dispatch(setFavArr(fav));
-    localStorage.setItem("fav", JSON.stringify(fav));
   }
 
   const mapWithFav = (item) => {
@@ -67,8 +60,6 @@ const Main = ({items, error}) => {
           render={() => (
             <List
               items={items.map(mapWithFav)}
-              cartArr={cartArr}
-              onFavClick={onFavClick}
               addToCart={addAction}
               delFromCart={delAction}
               listEmpty={items}
@@ -84,8 +75,6 @@ const Main = ({items, error}) => {
               items={items
                 .filter((item) => favArr.includes(item.id))
                 .map(mapWithFav)}
-              cartArr={cartArr}
-              onFavClick={onFavClick}
               addToCart={addAction}
               delFromCart={delAction}
               listEmpty={favArr}
@@ -101,8 +90,6 @@ const Main = ({items, error}) => {
               items={items
                 .filter((item) => cartArr.includes(item.id))
                 .map(mapWithFav)}
-              cartArr={cartArr}
-              onFavClick={onFavClick}
               delFromCart={delAction}
               listEmpty={cartArr}
               error={error}

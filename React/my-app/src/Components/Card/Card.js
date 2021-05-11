@@ -5,14 +5,15 @@ import style from "./Card.module.scss";
 import PropTypes from "prop-types";
 
 const Card = (props) => {
-  const { item, addToCart, onFavClick, delFromCart, isDelBtn } = props;
-  const { imgUrl, name, color, price, isFav } = item;
+  const { item, addToCart, delFromCart, isDelBtn } = props;
+  const { imgUrl, name, color, price, id } = item;
+
 
   return (
     <div>
       <div className={`${style.card}`}>
         <img className={`${style.card__img}`} src={imgUrl} alt="Card" />
-        <Fav isFav={isFav} onFavClick={onFavClick} />
+        <Fav id={id} />
         <div className={`${style.card__title}`}>{name}</div>
         <div className={`${style.card__additional}`}>{color}</div>
         <div className={`${style.card__price}`}>Price: {price}</div>

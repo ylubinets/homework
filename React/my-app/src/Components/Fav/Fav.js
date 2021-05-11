@@ -1,15 +1,30 @@
 import React from "react";
-import PropTypes from "prop-types";
 import style from "./Fav.module.scss";
+import {useDispatch, useSelector} from "react-redux";
+import {setFavArr} from "../../Redux/actions";
 
-const Fav = (props) => {
-  const { isFav, onFavClick } = props;
+const Fav = ({id}) => {
+
+    const dispatch = useDispatch();
+    const favArr = useSelector((state) => state.items.favArr);
+
+    function onFavClick(id) {
+        let fav;
+
+        if (favArr.includes(id)) {
+            fav = favArr.filter((n) => n !== id);
+        } else {
+            fav = [...favArr, id];
+        }
+        dispatch(setFavArr(fav));
+        localStorage.setItem("fav", JSON.stringify(fav));
+    }
 
   return (
     <div>
       <svg
-        fill={isFav ? "#F62A00" : "#00293C"}
-        onClick={onFavClick}
+        fill={favArr.includes(id) ? "#F62A00" : "#00293C"}
+        onClick={() => onFavClick(id)}
         className={`${style.fav__icon}`}
         height="20px"
         viewBox="0 -10 511.99143 511"
@@ -20,11 +35,6 @@ const Fav = (props) => {
       </svg>
     </div>
   );
-};
-
-Fav.propTypes = {
-  onFavClick: PropTypes.func.isRequired,
-  isFav: PropTypes.bool.isRequired,
 };
 
 export default Fav;

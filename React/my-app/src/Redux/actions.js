@@ -35,7 +35,6 @@ export const addModal = (id) => (dispatch) => {
 export const delModal = (id) => (dispatch) => {
     dispatch({type: DEL_MODAL, payload: {actionType: 'del', id: id}});
 };
-
 export const hideModal = () => (dispatch) => {
     dispatch({type: HIDE_MODAL, payload: null});
 };
