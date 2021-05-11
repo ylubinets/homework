@@ -3,11 +3,13 @@ import Button from "../Button/Button";
 import Fav from "../Fav/Fav";
 import style from "./Card.module.scss";
 import PropTypes from "prop-types";
+import {useDispatch} from "react-redux";
+import {addModal, delModal} from "../../Redux/actions";
 
 const Card = (props) => {
-  const { item, addToCart, delFromCart, isDelBtn } = props;
+  const dispatch = useDispatch();
+  const { item, isDelBtn } = props;
   const { imgUrl, name, color, price, id } = item;
-
 
   return (
     <div>
@@ -21,13 +23,13 @@ const Card = (props) => {
           <Button
             text="Add to Cart"
             backgroundColor={"#00293C"}
-            onClick={addToCart}
+            onClick={() => dispatch(addModal(id))}
           />
         ) : (
           <Button
             text="Delete from cart"
             backgroundColor={"#F62A00"}
-            onClick={delFromCart}
+            onClick={() => dispatch(delModal(id))}
           />
         )}
       </div>

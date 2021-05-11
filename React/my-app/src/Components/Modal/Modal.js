@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import style from "./Modal.module.scss";
+import {useSelector} from "react-redux";
 
 const Modal = (props) => {
   const {
@@ -11,6 +12,8 @@ const Modal = (props) => {
     actions,
     backgroundColor,
   } = props;
+
+
   return (
     <div>
       <div
